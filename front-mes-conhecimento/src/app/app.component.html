@@ -1,7 +1,21 @@
-<!-- Shell principal do App — Mês do Conhecimento UCS -->
-<!-- Componentes de layout e features serão adicionados nas próximas tasks -->
-<div class="min-h-screen bg-senior-bg font-sans text-senior-text">
-  <p class="text-center text-senior-primary pt-20 text-xl">
-    ✅ Task 1 concluída — Design System carregado
-  </p>
-</div>
+<!-- Shell Principal — Mês do Conhecimento UCS -->
+
+<!-- Header fixo (fora do fluxo de scroll snap) -->
+<app-header />
+
+<!-- Container de scroll snap — engloba todas as seções -->
+<main id="main-content" role="main">
+
+  <!-- Seção 1: Hero (ponto de snap) -->
+  <app-hero />
+
+  <!-- Seção 2: Sobre (será adicionado na Task 4) -->
+  <!-- <app-sobre /> -->
+
+  <!-- Seção 3: Palestras (será adicionado na Task 5) -->
+  <!-- <app-palestras /> -->
+
+</main>
+
+<!-- Footer fora do scroll snap -->
+<app-footer />
