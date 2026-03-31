@@ -4,6 +4,7 @@ import { HeroComponent } from './layout/hero/hero.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { SobreComponent } from './features/sobre/sobre.component';
 import { PalestrasComponent } from './features/palestras/palestras.component';
+import { DividerComponent } from './shared/divider/divider.component';
 
 /**
  * AppComponent — Shell principal da aplicação.
@@ -17,6 +18,7 @@ import { PalestrasComponent } from './features/palestras/palestras.component';
     HeroComponent,
     SobreComponent,
     PalestrasComponent,
+    DividerComponent,
     FooterComponent,
   ],
   templateUrl: './app.component.html',

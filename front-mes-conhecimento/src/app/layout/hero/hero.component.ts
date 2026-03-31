@@ -35,6 +35,10 @@ import { ButtonComponent } from '../../shared/button/button.component';
           <div class="absolute inset-0"
                style="background: radial-gradient(circle at center, rgba(10,11,16,0.5) 0%, rgba(10,11,16,0.8) 60%, #0a0b10 100%); backdrop-filter: blur(3px);">
           </div>
+          <!-- Fade suave na parte inferior para remover o "corte" duro da imagem -->
+          <div class="absolute bottom-0 w-full h-40"
+               style="background: linear-gradient(to top, #0a0b10 0%, rgba(10,11,16,0.8) 40%, transparent 100%);">
+          </div>
         </div>
 
         <!-- Partículas/Orbs antigas agora com z-index para sobrepor parte da imagem -->
