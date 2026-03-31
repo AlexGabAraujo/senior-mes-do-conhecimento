@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './layout/header/header.component';
 import { HeroComponent } from './layout/hero/hero.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { SobreComponent } from './features/sobre/sobre.component';
 
 /**
  * AppComponent — Shell principal da aplicação.
@@ -14,6 +15,7 @@ import { FooterComponent } from './layout/footer/footer.component';
   imports: [
     HeaderComponent,
     HeroComponent,
+    SobreComponent,
     FooterComponent,
   ],
   templateUrl: './app.component.html',
