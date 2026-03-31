@@ -23,11 +23,21 @@ import { ButtonComponent } from '../../shared/button/button.component';
     <section
       id="hero"
       class="snap-section relative flex items-center justify-center overflow-hidden"
-      style="background: url('/hero-bg.png') center center / cover no-repeat;"
+      style="background-color: #0a0b10;"
       aria-labelledby="hero-titulo"
     >
-      <!-- Elementos decorativos de fundo (partículas/orbs) -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <!-- Elementos decorativos de fundo e Background Image -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true" style="z-index: 0;">
+        <!-- Imagem hero-bg.png com mix-blend e blur ao redor para mesclar -->
+        <div class="absolute inset-0">
+          <img src="hero-bg.png" alt="" class="w-full h-full object-cover opacity-50" />
+          <!-- Efeito de blur/fade ao redor da imagem (Soft edges) -->
+          <div class="absolute inset-0"
+               style="background: radial-gradient(circle at center, transparent 30%, #0a0b10 85%); backdrop-filter: blur(2px);">
+          </div>
+        </div>
+
+        <!-- Partículas/Orbs antigas agora com z-index para sobrepor parte da imagem -->
         <!-- Orb 1 - teal grande -->
         <div
           class="absolute animate-float"
@@ -59,14 +69,9 @@ import { ButtonComponent } from '../../shared/button/button.component';
       <div class="container relative z-10 flex flex-col items-center text-center px-6"
            style="max-width: 900px;">
 
-        <!-- Logo UCS no Hero -->
-        <div class="animate-fade-in-up delay-100 mb-5">
-          <img
-            src="/logoUCS.png"
-            alt="Senior Universidade Corporativa"
-            class="h-10 md:h-12 object-contain"
-            style="filter: brightness(0) invert(1);"
-          />
+        <!-- Identidade institucional com logo -->
+        <div class="animate-fade-in-up delay-100 flex justify-center mb-6">
+          <img src="logoUCS.png" alt="Senior Sistemas | Universidade Corporativa Senior" class="h-10 md:h-12 object-contain" />
         </div>
 
         <!-- Badge do evento -->

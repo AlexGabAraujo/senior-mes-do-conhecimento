@@ -30,13 +30,8 @@ import { Component, signal, HostListener } from '@angular/core';
           aria-label="Ir para o início — Senior Universidade Corporativa"
           (click)="scrollTo($event, 'hero')"
         >
-          <!-- Logo UCS — imagem real -->
-          <img
-            src="/logoUCS.png"
-            alt="Senior Universidade Corporativa"
-            class="h-8 md:h-9 object-contain transition-transform duration-300 group-hover:scale-105"
-            style="filter: brightness(0) invert(1);"
-          />
+          <!-- Logo da Senior Universidade Corporativa (Public PNG) -->
+          <img src="logoUCS.png" alt="Senior Universidade Corporativa" class="h-8 md:h-10 object-contain transition-transform duration-300 group-hover:scale-105" />
         </a>
 
         <!-- Navegação Desktop -->
