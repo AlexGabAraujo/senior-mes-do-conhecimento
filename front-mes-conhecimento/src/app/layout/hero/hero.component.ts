@@ -61,9 +61,15 @@ import { ButtonComponent } from '../../shared/button/button.component';
       <div class="container relative z-10 flex flex-col items-center text-center px-6"
            style="max-width: 900px;">
 
+        <!-- Identidade institucional -->
+        <div class="animate-fade-in-up delay-100 flex flex-col items-center gap-1 mb-5">
+          <span class="font-bold text-white" style="font-size: 1rem; letter-spacing: 0.01em;">Senior Sistemas</span>
+          <span style="color: #64748b; font-size: 0.8rem;">Universidade Corporativa Senior — UCS</span>
+        </div>
+
         <!-- Badge do evento -->
         <div
-          class="animate-fade-in-up delay-100 inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full"
+          class="animate-fade-in-up delay-200 inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full"
           style="background: rgba(0,176,144,0.1); border: 1px solid rgba(0,176,144,0.3);"
         >
           <span class="w-2 h-2 rounded-full animate-pulse" style="background: #00b090;"></span>
@@ -154,10 +160,6 @@ import { ButtonComponent } from '../../shared/button/button.component';
           <div class="flex flex-col items-center gap-1">
             <span class="text-3xl font-black" style="color: #00b090;">6</span>
             <span class="text-xs font-medium uppercase tracking-widest" style="color: #475569;">Oficinas</span>
-          </div>
-          <div class="flex flex-col items-center gap-1">
-            <span class="text-3xl font-black" style="color: #00b090;">1 mês</span>
-            <span class="text-xs font-medium uppercase tracking-widest" style="color: #475569;">de Conteúdo</span>
           </div>
         </div>
 
