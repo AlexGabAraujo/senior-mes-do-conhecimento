@@ -65,12 +65,13 @@ import { Component, signal, HostListener } from '@angular/core';
 
           <!-- Botão CTA no Header -->
           <a
-            href="#palestras"
+            href="https://ucsonline.senior.com.br/lms/#/trilha/ZsPOtmWqOpRDn7Cwyt9rX"
+            target="_blank"
+            rel="noopener noreferrer"
             id="nav-inscreva-se"
             class="btn-primary"
             style="padding: 0.5rem 1.25rem; font-size: 0.875rem; border-radius: 0.375rem;"
-            (click)="scrollTo($event, 'palestras')"
-            aria-label="Inscreva-se nas palestras"
+            aria-label="Inscreva-se na trilha do evento na UCS"
           >
             Inscreva-se
           </a>
@@ -127,10 +128,12 @@ import { Component, signal, HostListener } from '@angular/core';
               Sobre
             </a>
             <a
-              href="#palestras"
+              href="https://ucsonline.senior.com.br/lms/#/trilha/ZsPOtmWqOpRDn7Cwyt9rX"
+              target="_blank"
+              rel="noopener noreferrer"
               class="btn-primary"
               style="text-align: center; border-radius: 0.375rem;"
-              (click)="scrollTo($event, 'palestras'); toggleMobileMenu()"
+              (click)="toggleMobileMenu()"
             >
               Inscreva-se
             </a>

@@ -128,18 +128,18 @@ import { ButtonComponent } from '../../shared/button/button.component';
         <div class="animate-fade-in-up delay-400 flex flex-col sm:flex-row items-center gap-4">
           <!-- CTA Principal -->
           <a
-            href="#palestras"
+            href="https://ucsonline.senior.com.br/lms/#/trilha/ZsPOtmWqOpRDn7Cwyt9rX"
+            target="_blank"
+            rel="noopener noreferrer"
             id="hero-cta-principal"
             class="btn-primary animate-glow-pulse"
             style="font-size: 1rem; padding: 0.9rem 2.5rem; border-radius: 0.5rem;"
-            aria-label="Ver todas as palestras do evento"
-            (click)="scrollTo($event, 'palestras')"
+            aria-label="Inscreva-se na trilha do evento na UCS"
           >
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
             </svg>
-            Ver Programação
+            Inscreva-se
           </a>
 
           <!-- Botão Secundário -->
