@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
+/**
+ * Componente raiz da aplicação — Mês do Conhecimento UCS.
+ * Atua como shell principal que compõe todos os demais componentes.
+ */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'front-mes-conhecimento';
-}
+export class AppComponent {}

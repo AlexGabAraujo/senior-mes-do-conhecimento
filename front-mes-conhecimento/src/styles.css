@@ -1,1 +1,333 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================
+   ESTILOS GLOBAIS — Mês do Conhecimento UCS
+   Senior Universidade Corporativa
+   ============================================================ */
+
+/* ---------- Reset e Box Sizing ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Tokens de Design via CSS Custom Properties ---------- */
+:root {
+  /* Cores principais */
+  --color-bg:           #0a0b10;
+  --color-bg-card:      #111827;
+  --color-bg-nav:       rgba(10, 11, 16, 0.85);
+  --color-primary:      #00b090;
+  --color-primary-dark: #008f74;
+  --color-primary-glow: rgba(0, 176, 144, 0.3);
+  --color-text:         #ffffff;
+  --color-muted:        #94a3b8;
+  --color-border:       #1e293b;
+
+  /* Badges */
+  --color-badge-palestra: #3b82f6;
+  --color-badge-oficina:  #00b090;
+
+  /* Tipografia */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Espaçamentos */
+  --section-padding: 5rem 1.5rem;
+  --container-max:   1200px;
+
+  /* Sombras com glow teal */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 30px rgba(0, 176, 144, 0.25);
+  --shadow-glow-lg: 0 0 60px rgba(0, 176, 144, 0.35);
+
+  /* Transições */
+  --transition-base: 0.3s ease;
+  --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Scroll Snap Container Principal ---------- */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* ---------- Seções com Scroll Snap ---------- */
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* Seção de palestras pode ter altura maior que 100vh — snap ainda funciona */
+.snap-section--tall {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  scroll-snap-stop: always;
+}
+
+/* ---------- Container Centralizado ---------- */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+/* ---------- Utilitários de Gradiente ---------- */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0097a7 100%);
+}
+
+.gradient-glow-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 176, 144, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(0, 151, 167, 0.08) 0%, transparent 60%),
+    var(--color-bg);
+}
+
+/* ---------- Animações Globais (keyframes) ---------- */
+@keyframes fadeInUp {
+  0%   { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 176, 144, 0.2); }
+  50%       { box-shadow: 0 0 50px rgba(0, 176, 144, 0.5); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: transparent; }
+  50%       { border-color: var(--color-primary); }
+}
+
+/* ---------- Classes de Animação Utilitárias ---------- */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+  opacity: 0;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Delays para animações em cascata */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* ---------- Cards com Glassmorphism ---------- */
+.card-glass {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  transition: transform var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.card-glass:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ---------- Botão Primário com Glow ---------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0097a7 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--transition-base),
+              box-shadow var(--transition-base),
+              filter var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 176, 144, 0.5);
+  filter: brightness(1.1);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Botão Outline ---------- */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition-base),
+              box-shadow var(--transition-base),
+              transform var(--transition-base);
+}
+
+.btn-outline:hover {
+  background: rgba(0, 176, 144, 0.1);
+  box-shadow: 0 0 20px rgba(0, 176, 144, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge--palestra {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.badge--oficina {
+  background: rgba(0, 176, 144, 0.15);
+  color: var(--color-primary);
+  border: 1px solid rgba(0, 176, 144, 0.3);
+}
+
+/* ---------- Linhas Decorativas (accent) ---------- */
+.accent-line {
+  display: inline-block;
+  width: 3rem;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Label de Seção ---------- */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Scrollbar Personalizada ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* ---------- Seleção de Texto ---------- */
+::selection {
+  background: rgba(0, 176, 144, 0.3);
+  color: #fff;
+}
+
+/* ---------- Responsividade Utilitária ---------- */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 4rem 1rem;
+  }
+
+  .snap-section {
+    /* Mobile: snap facilitado, sem forçar 100vh em seções longas */
+    scroll-snap-align: start;
+    min-height: 100dvh;
+  }
+}

@@ -1,11 +1,74 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>FrontMesConhecimento</title>
+  <title>Mês do Conhecimento 2026 — Universidade Corporativa Senior</title>
+  <meta name="description" content="IA: Inteligência Ativa. Um mês inteiro dedicado a explorar como a Inteligência Artificial pode ser aplicada de forma estratégica no ambiente corporativo. Palestras e oficinas em abril.">
+  <meta name="keywords" content="inteligência artificial, IA, palestras, oficinas, Senior, UCS, Universidade Corporativa, mês do conhecimento">
+  <meta name="author" content="Universidade Corporativa Senior">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            /* Paleta oficial Senior / UCS */
+            'senior-bg':       '#0a0b10',
+            'senior-bg-card':  '#111827',
+            'senior-bg-nav':   'rgba(10, 11, 16, 0.85)',
+            'senior-primary':  '#00b090',
+            'senior-primary-dark': '#008f74',
+            'senior-primary-glow': 'rgba(0, 176, 144, 0.3)',
+            'senior-text':     '#ffffff',
+            'senior-muted':    '#94a3b8',
+            'senior-border':   '#1e293b',
+            'badge-palestra':  '#3b82f6',
+            'badge-oficina':   '#00b090',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          animation: {
+            'fade-in-up':    'fadeInUp 0.6s ease forwards',
+            'fade-in':       'fadeIn 0.4s ease forwards',
+            'glow-pulse':    'glowPulse 3s ease-in-out infinite',
+            'float':         'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%':   { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%':   { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            glowPulse: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(0,176,144,0.2)' },
+              '50%':      { boxShadow: '0 0 40px rgba(0,176,144,0.5)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%':      { transform: 'translateY(-10px)' },
+            }
+          },
+          backdropBlur: {
+            xs: '2px',
+          },
+        }
+      }
+    }
+  </script>
 </head>
 <body>
   <app-root></app-root>
