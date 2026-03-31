@@ -30,26 +30,13 @@ import { Component, signal, HostListener } from '@angular/core';
           aria-label="Ir para o início — Senior Universidade Corporativa"
           (click)="scrollTo($event, 'hero')"
         >
-          <!-- Ícone S da Senior -->
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"
-               class="transition-transform duration-300 group-hover:scale-110">
-            <path
-              d="M14 2C7.373 2 2 7.373 2 14s5.373 12 12 12 12-5.373 12-12S20.627 2 14 2z"
-              fill="rgba(0,176,144,0.15)" stroke="#00b090" stroke-width="1.5"/>
-            <path
-              d="M9 11.5C9 10.119 10.119 9 11.5 9h2c1.381 0 2.5 1.119 2.5 2.5S14.881 14 13.5 14h-1C11.119 14 10 15.119 10 16.5S11.119 19 12.5 19h3"
-              stroke="#00b090" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-
-          <!-- Texto do logo -->
-          <div class="flex flex-col leading-none">
-            <span class="text-white font-bold text-base tracking-tight">Senior</span>
-            <span
-              class="text-[10px] font-medium tracking-widest uppercase"
-              style="color: #00b090; letter-spacing: 0.15em;">
-              Universidade Corporativa
-            </span>
-          </div>
+          <!-- Logo UCS — imagem real -->
+          <img
+            src="/logoUCS.png"
+            alt="Senior Universidade Corporativa"
+            class="h-8 md:h-9 object-contain transition-transform duration-300 group-hover:scale-105"
+            style="filter: brightness(0) invert(1);"
+          />
         </a>
 
         <!-- Navegação Desktop -->

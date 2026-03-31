@@ -23,9 +23,7 @@ import { ButtonComponent } from '../../shared/button/button.component';
     <section
       id="hero"
       class="snap-section relative flex items-center justify-center overflow-hidden"
-      style="background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,176,144,0.12) 0%, transparent 70%),
-             radial-gradient(ellipse 50% 40% at 80% 60%, rgba(0,151,167,0.07) 0%, transparent 60%),
-             #0a0b10;"
+      style="background: url('/hero-bg.png') center center / cover no-repeat;"
       aria-labelledby="hero-titulo"
     >
       <!-- Elementos decorativos de fundo (partículas/orbs) -->
@@ -61,10 +59,14 @@ import { ButtonComponent } from '../../shared/button/button.component';
       <div class="container relative z-10 flex flex-col items-center text-center px-6"
            style="max-width: 900px;">
 
-        <!-- Identidade institucional -->
-        <div class="animate-fade-in-up delay-100 flex flex-col items-center gap-1 mb-5">
-          <span class="font-bold text-white" style="font-size: 1rem; letter-spacing: 0.01em;">Senior Sistemas</span>
-          <span style="color: #64748b; font-size: 0.8rem;">Universidade Corporativa Senior — UCS</span>
+        <!-- Logo UCS no Hero -->
+        <div class="animate-fade-in-up delay-100 mb-5">
+          <img
+            src="/logoUCS.png"
+            alt="Senior Universidade Corporativa"
+            class="h-10 md:h-12 object-contain"
+            style="filter: brightness(0) invert(1);"
+          />
         </div>
 
         <!-- Badge do evento -->
