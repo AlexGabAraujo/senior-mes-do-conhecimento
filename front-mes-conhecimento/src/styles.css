@@ -48,7 +48,6 @@
 
 /* ---------- Scroll Snap Container Principal ---------- */
 html {
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: scroll;
   font-family: var(--font-sans);
@@ -65,19 +64,16 @@ body {
   line-height: 1.6;
 }
 
-/* ---------- Seções com Scroll Snap ---------- */
+/* ---------- Seções base ---------- */
 .snap-section {
-  scroll-snap-align: start;
   min-height: 100vh;
   width: 100%;
   position: relative;
 }
 
-/* Seção de palestras pode ter altura maior que 100vh — snap ainda funciona */
+/* Seção de palestras pode ter altura maior que 100vh */
 .snap-section--tall {
-  scroll-snap-align: start;
   min-height: 100vh;
-  scroll-snap-stop: always;
 }
 
 /* ---------- Container Centralizado ---------- */
@@ -326,8 +322,7 @@ body {
   }
 
   .snap-section {
-    /* Mobile: snap facilitado, sem forçar 100vh em seções longas */
-    scroll-snap-align: start;
+    /* Mobile: sem forçar 100vh em seções longas */
     min-height: 100dvh;
   }
 }

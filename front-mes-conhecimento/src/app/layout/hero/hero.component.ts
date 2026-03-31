@@ -31,9 +31,9 @@ import { ButtonComponent } from '../../shared/button/button.component';
         <!-- Imagem hero-bg.png com mix-blend e blur ao redor para mesclar -->
         <div class="absolute inset-0">
           <img src="hero-bg.png" alt="" class="w-full h-full object-cover opacity-50" />
-          <!-- Efeito de blur/fade ao redor da imagem (Soft edges) -->
+          <!-- Efeito de blur/fade escurecido para ajudar na leitura do texto -->
           <div class="absolute inset-0"
-               style="background: radial-gradient(circle at center, transparent 30%, #0a0b10 85%); backdrop-filter: blur(2px);">
+               style="background: radial-gradient(circle at center, rgba(10,11,16,0.5) 0%, rgba(10,11,16,0.8) 60%, #0a0b10 100%); backdrop-filter: blur(3px);">
           </div>
         </div>
 
@@ -69,14 +69,14 @@ import { ButtonComponent } from '../../shared/button/button.component';
       <div class="container relative z-10 flex flex-col items-center text-center px-6"
            style="max-width: 900px;">
 
-        <!-- Identidade institucional com logo -->
+        <!-- Identidade institucional com logo (branco) -->
         <div class="animate-fade-in-up delay-100 flex justify-center mb-6">
-          <img src="logoUCS.png" alt="Senior Sistemas | Universidade Corporativa Senior" class="h-10 md:h-12 object-contain" />
+          <img src="logoUCS.png" alt="Senior Sistemas | Universidade Corporativa Senior" class="h-10 md:h-12 object-contain" style="filter: brightness(0) invert(1);" />
         </div>
 
-        <!-- Badge do evento -->
+        <!-- Badge do evento (espaçamento aumentado) -->
         <div
-          class="animate-fade-in-up delay-200 inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full"
+          class="animate-fade-in-up delay-200 inline-flex items-center gap-2 mb-10 px-4 py-2 rounded-full"
           style="background: rgba(0,176,144,0.1); border: 1px solid rgba(0,176,144,0.3);"
         >
           <span class="w-2 h-2 rounded-full animate-pulse" style="background: #00b090;"></span>
@@ -110,7 +110,7 @@ import { ButtonComponent } from '../../shared/button/button.component';
         <!-- Subtítulo -->
         <p
           class="animate-fade-in-up delay-300 text-base md:text-xl leading-relaxed mb-10 max-w-2xl"
-          style="color: #94a3b8;"
+          style="color: #cbd5e1;"
         >
           Um mês inteiro dedicado a explorar como a
           <strong style="color: #ffffff; font-weight: 600;">Inteligência Artificial</strong>
@@ -154,26 +154,26 @@ import { ButtonComponent } from '../../shared/button/button.component';
         <!-- Stats rápidos -->
         <div
           class="animate-fade-in-up delay-500 flex flex-wrap justify-center gap-8 mt-14 pt-10"
-          style="border-top: 1px solid rgba(30,41,59,0.6); width: 100%;"
+          style="border-top: 1px solid rgba(255,255,255,0.1); width: 100%;"
         >
           <div class="flex flex-col items-center gap-1">
             <span class="text-3xl font-black" style="color: #00b090;">10</span>
-            <span class="text-xs font-medium uppercase tracking-widest" style="color: #475569;">Atividades</span>
+            <span class="text-xs font-medium uppercase tracking-widest" style="color: #94a3b8;">Atividades</span>
           </div>
           <div class="flex flex-col items-center gap-1">
             <span class="text-3xl font-black" style="color: #00b090;">4</span>
-            <span class="text-xs font-medium uppercase tracking-widest" style="color: #475569;">Palestras</span>
+            <span class="text-xs font-medium uppercase tracking-widest" style="color: #94a3b8;">Palestras</span>
           </div>
           <div class="flex flex-col items-center gap-1">
             <span class="text-3xl font-black" style="color: #00b090;">6</span>
-            <span class="text-xs font-medium uppercase tracking-widest" style="color: #475569;">Oficinas</span>
+            <span class="text-xs font-medium uppercase tracking-widest" style="color: #94a3b8;">Oficinas</span>
           </div>
         </div>
 
-        <!-- Indicador de scroll -->
+        <!-- Indicador de scroll clareado -->
         <div
           class="animate-float mt-10 flex flex-col items-center gap-2"
-          style="color: #475569;"
+          style="color: #94a3b8;"
           aria-hidden="true"
         >
           <span class="text-xs uppercase tracking-widest">Role para explorar</span>
