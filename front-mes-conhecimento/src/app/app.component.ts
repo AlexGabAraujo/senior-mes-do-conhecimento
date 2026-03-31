@@ -3,11 +3,11 @@ import { HeaderComponent } from './layout/header/header.component';
 import { HeroComponent } from './layout/hero/hero.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { SobreComponent } from './features/sobre/sobre.component';
+import { PalestrasComponent } from './features/palestras/palestras.component';
 
 /**
  * AppComponent — Shell principal da aplicação.
- * Compõe todos os componentes de layout e features.
- * Seções com scroll-snap são montadas aqui na sequência correta.
+ * Compõe todos os componentes de layout e features na ordem do scroll snap.
  */
 @Component({
   selector: 'app-root',
@@ -16,6 +16,7 @@ import { SobreComponent } from './features/sobre/sobre.component';
     HeaderComponent,
     HeroComponent,
     SobreComponent,
+    PalestrasComponent,
     FooterComponent,
   ],
   templateUrl: './app.component.html',
