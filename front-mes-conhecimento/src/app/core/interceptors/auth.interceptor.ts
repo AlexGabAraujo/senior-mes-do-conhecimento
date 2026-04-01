@@ -6,16 +6,12 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const token = authService.getToken();
 
-  // Apenas clona e injeta cabeçalho Bearer nas requisições seguras para /api/admin
-  if (token && req.url.includes('/api/admin')) {
-    const cloned = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
+  if (token && !req.url.includes('/login') && !req.url.includes('/register')) {
+    const authReq = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${token}`)
     });
-    return next(cloned);
+    return next(authReq);
   }
 
-  // Deixa o fluxo aberto passar se não for rota de admin
   return next(req);
 };

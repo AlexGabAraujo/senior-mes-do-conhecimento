@@ -1,4 +1,6 @@
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal, HostListener, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 /**
  * HeaderComponent — Navbar principal do site Mês do Conhecimento UCS.
@@ -12,6 +14,7 @@ import { Component, signal, HostListener } from '@angular/core';
 @Component({
   selector: 'app-header',
   standalone: true,
+  imports: [RouterModule],
   template: `
     <header
       class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
@@ -63,18 +66,50 @@ import { Component, signal, HostListener } from '@angular/core';
             Sobre
           </a>
 
-          <!-- Botão CTA no Header -->
-          <a
-            href="https://ucsonline.senior.com.br/lms/#/trilha/ZsPOtmWqOpRDn7Cwyt9rX"
-            target="_blank"
-            rel="noopener noreferrer"
-            id="nav-inscreva-se"
-            class="btn-primary"
-            style="padding: 0.5rem 1.25rem; font-size: 0.875rem; border-radius: 0.375rem;"
-            aria-label="Inscreva-se na trilha do evento na UCS"
-          >
-            Inscreva-se
-          </a>
+          <!-- Botões de Login e Cadastro / Usuário Logado -->
+          @if (!isAuthenticated()) {
+            <a
+              routerLink="/login"
+              class="nav-link"
+              style="color: #94a3b8; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: color 0.3s ease; letter-spacing: 0.02em;"
+              (mouseenter)="onNavHover($event, true)"
+              (mouseleave)="onNavHover($event, false)"
+            >
+              Login
+            </a>
+            <a
+              routerLink="/register"
+              class="btn-primary"
+              style="padding: 0.5rem 1.25rem; font-size: 0.875rem; border-radius: 0.375rem; text-decoration: none;"
+              aria-label="Cadastrar-se no sistema"
+            >
+              Cadastro
+            </a>
+          } @else {
+            <span class="text-sm text-[#94a3b8]">
+              Olá, {{ currentUser()?.username }}
+            </span>
+            @if (isAdmin()) {
+              <a
+                routerLink="/admin"
+                class="nav-link"
+                style="color: #94a3b8; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: color 0.3s ease; letter-spacing: 0.02em;"
+                (mouseenter)="onNavHover($event, true)"
+                (mouseleave)="onNavHover($event, false)"
+              >
+                Admin
+              </a>
+            }
+            <button
+              (click)="logout()"
+              class="nav-link"
+              style="color: #94a3b8; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: color 0.3s ease; letter-spacing: 0.02em; background: none; border: none; cursor: pointer;"
+              (mouseenter)="onNavHover($event, true)"
+              (mouseleave)="onNavHover($event, false)"
+            >
+              Sair
+            </button>
+          }
         </nav>
 
         <!-- Menu Hamburger Mobile -->
@@ -127,16 +162,43 @@ import { Component, signal, HostListener } from '@angular/core';
             >
               Sobre
             </a>
-            <a
-              href="https://ucsonline.senior.com.br/lms/#/trilha/ZsPOtmWqOpRDn7Cwyt9rX"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-primary"
-              style="text-align: center; border-radius: 0.375rem;"
-              (click)="toggleMobileMenu()"
-            >
-              Inscreva-se
-            </a>
+            
+            @if (!isAuthenticated()) {
+              <a
+                routerLink="/login"
+                style="color: #94a3b8; font-size: 1rem; font-weight: 500; text-decoration: none; padding: 0.5rem 0;"
+                (click)="toggleMobileMenu()"
+              >
+                Login
+              </a>
+              <a
+                routerLink="/register"
+                class="btn-primary"
+                style="text-align: center; border-radius: 0.375rem; text-decoration: none;"
+                (click)="toggleMobileMenu()"
+              >
+                Cadastro
+              </a>
+            } @else {
+              <div style="color: #94a3b8; font-size: 1rem; padding: 0.5rem 0;">
+                Olá, {{ currentUser()?.username }}
+              </div>
+              @if (isAdmin()) {
+                <a
+                  routerLink="/admin"
+                  style="color: #94a3b8; font-size: 1rem; font-weight: 500; text-decoration: none; padding: 0.5rem 0;"
+                  (click)="toggleMobileMenu()"
+                >
+                  Admin
+                </a>
+              }
+              <button
+                (click)="logout(); toggleMobileMenu()"
+                style="color: #94a3b8; font-size: 1rem; font-weight: 500; text-decoration: none; padding: 0.5rem 0; background: none; border: none; cursor: pointer; text-align: left; width: 100%;"
+              >
+                Sair
+              </button>
+            }
           </div>
         </div>
       }
@@ -144,11 +206,18 @@ import { Component, signal, HostListener } from '@angular/core';
   `,
 })
 export class HeaderComponent {
+  private readonly authService = inject(AuthService);
+  
   /** Signal: controla se a página foi rolada (ativa o efeito blur no header) */
   readonly isScrolled = signal(false);
 
   /** Signal: controla abertura/fechamento do menu mobile */
   readonly mobileMenuOpen = signal(false);
+
+  // Computed properties do AuthService
+  readonly isAuthenticated = this.authService.isAuthenticated;
+  readonly currentUser = this.authService.currentUser;
+  readonly isAdmin = this.authService.isAdmin;
 
   /** Detecta scroll da página para aplicar efeito blur no header */
   @HostListener('window:scroll')
@@ -177,5 +246,10 @@ export class HeaderComponent {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
+
+  /** Faz logout do usuário */
+  logout(): void {
+    this.authService.logout();
   }
 }

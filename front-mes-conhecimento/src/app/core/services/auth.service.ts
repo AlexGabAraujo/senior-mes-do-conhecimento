@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { User, UserRole } from '../models/user.model';
-import { Observable, tap, catchError, throwError } from 'rxjs';
+import { Observable, tap, catchError, throwError, switchMap, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class AuthService {
   // States derivados
   readonly currentUser = computed(() => this.#currentUser());
   readonly isAuthenticated = computed(() => !!this.#currentUser());
+  readonly isAdmin = computed(() => this.#currentUser()?.role === UserRole.ADMIN);
 
   constructor() {
     this.checkSession();
@@ -42,20 +43,32 @@ export class AuthService {
       .pipe(
         tap((res) => {
           localStorage.setItem('__auth_token', res.token);
-          
-          // Num cenário real teríamos uma requisição /api/me ou decode de JWT (jwt-decode).
-          // Para este protótipo, vamos instanciar o objeto usuário base para liberar as VIEWS de admin:
-          const user: User = {
-            id: 0,
-            email: email,
-            username: 'Admin Mês Conhecimento',
-            role: UserRole.ADMIN
-          };
-
-          this.#currentUser.set(user);
-          localStorage.setItem('__user', JSON.stringify(user));
+        }),
+        switchMap((res) => {
+          // Após salvar o token, busca os dados do usuário
+          return this.getCurrentUser().pipe(
+            map(() => res), // Retorna o token original
+            catchError(() => of(res)) // Se falhar ao buscar usuário, ainda retorna o token
+          );
         }),
         catchError(err => throwError(() => new Error('Credenciais inválidas.')))
+      );
+  }
+
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/me`)
+      .pipe(
+        tap((user) => {
+          this.#currentUser.set(user);
+          localStorage.setItem('__user', JSON.stringify(user));
+        })
+      );
+  }
+
+  register(userData: { username: string; email: string; password: string }): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.baseUrl}/register`, userData)
+      .pipe(
+        catchError(err => throwError(() => new Error('Erro ao cadastrar usuário.')))
       );
   }
 

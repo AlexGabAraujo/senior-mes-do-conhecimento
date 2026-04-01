@@ -193,7 +193,7 @@ export class PalestrasAdminComponent {
   }
 
   deleteLecture(lecture: Lecture) {
-    if (confirm(\`Tem certeza que deseja excluir '\${lecture.title}'?\`)) {
+    if (confirm(`Tem certeza que deseja excluir '${lecture.title}'?`)) {
       this.#lectureService.excluir(lecture.id);
     }
   }

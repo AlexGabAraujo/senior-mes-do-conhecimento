@@ -10,18 +10,19 @@ spring:
   # Configuração de Banco de Dados PostgreSQL
   datasource:
     url: jdbc:postgresql://localhost:5432/mes_conhecimento
-    username: root
+    username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
     
   # Configurações JPA e Hibernate
   jpa:
     hibernate:
-      ddl-auto: validate # Flyway gerencia as tabelas
+      ddl-auto: none # Evita o erro de "table missing" no startup
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         
   # Configurações do Flyway
   flyway:

@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Lecture } from '../../../../core/models/lecture.model';
+import { Lecture } from '../../../../../core/models/lecture.model';
 
 @Component({
   selector: 'app-palestra-list-item',
@@ -43,7 +43,7 @@ export class PalestraListItemComponent {
   onImageError(event: Event): void {
     const img = event.target as HTMLImageElement;
     const nome = this.lecture().speaker.split(' ')[0];
-    img.src = \`https://ui-avatars.com/api/?name=\${encodeURIComponent(nome)}&background=1E293B&color=00b090&size=150\`;
+    img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(nome)}&background=1E293B&color=00b090&size=150`;
     img.onerror = null;
   }
 

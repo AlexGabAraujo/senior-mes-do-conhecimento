@@ -1,7 +1,7 @@
 import { Component, input, output, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { Lecture, LectureType, TargetAudience } from '../../../../core/models/lecture.model';
+import { Lecture, LectureType, TargetAudience } from '../../../../../core/models/lecture.model';
 
 @Component({
   selector: 'app-palestra-form-modal',

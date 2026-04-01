@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '../../shared/button/button.component';
 
 /**
  * HeroComponent — Seção principal de apresentação do evento.
@@ -17,7 +16,7 @@ import { ButtonComponent } from '../../shared/button/button.component';
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [],
   template: `
     <!-- Seção Hero — ponto de snap #hero -->
     <section
