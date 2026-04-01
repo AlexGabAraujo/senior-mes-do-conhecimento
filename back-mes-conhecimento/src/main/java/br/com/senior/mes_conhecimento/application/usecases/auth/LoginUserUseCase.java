@@ -22,13 +22,13 @@ public class LoginUserUseCase {
     }
 
     public String execute(LoginRequestDTO dto) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(dto.email(), dto.password());
+        var usernamePassword = new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword());
         // O Authentication Manager usará o AuthService (UserDetailsService) e o PasswordEncoder configurados para validar no banco de dados.
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
         // O principal será o UserDetails do Spring que passamos em AuthService. Precisamos da Entidade User para gerar o token com regras.
         // Já verificamos e existe, carregar do repo
-        User user = userRepository.findByEmail(dto.email())
+        User user = userRepository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado após login"));
 
         return tokenService.generateToken(user);

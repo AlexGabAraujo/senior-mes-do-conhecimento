@@ -67,11 +67,6 @@ import { AuthService } from '../../../core/services/auth.service';
                 Cadastre-se
               </a>
             </p>
-            <p class="text-xs text-[#64748B] mt-2">
-              <a routerLink="/admin/login" class="text-[#64748B] hover:text-[#94A3B8] transition-colors">
-                Acesso administrativo
-              </a>
-            </p>
           </div>
         </form>
       </div>

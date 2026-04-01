@@ -5,7 +5,7 @@ import br.com.senior.mes_conhecimento.application.dtos.LectureResponseDTO;
 import br.com.senior.mes_conhecimento.application.usecases.lecture.CreateLectureUseCase;
 import br.com.senior.mes_conhecimento.application.usecases.lecture.DeleteLectureUseCase;
 import br.com.senior.mes_conhecimento.application.usecases.lecture.UpdateLectureUseCase;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,7 +32,7 @@ public class AdminLectureController {
     public ResponseEntity<LectureResponseDTO> create(@RequestBody @Valid LectureRequestDTO dto) {
         LectureResponseDTO response = createLectureUseCase.execute(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(response.id()).toUri();
+                .path("/{id}").buildAndExpand(response.getId()).toUri();
         return ResponseEntity.created(location).body(response);
     }
 

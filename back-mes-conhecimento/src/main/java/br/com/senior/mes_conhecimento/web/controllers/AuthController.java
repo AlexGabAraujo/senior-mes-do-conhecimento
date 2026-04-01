@@ -7,7 +7,7 @@ import br.com.senior.mes_conhecimento.application.usecases.auth.LoginUserUseCase
 import br.com.senior.mes_conhecimento.application.usecases.auth.RegisterUserUseCase;
 import br.com.senior.mes_conhecimento.domain.entities.User;
 import br.com.senior.mes_conhecimento.domain.repositories.UserRepository;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;

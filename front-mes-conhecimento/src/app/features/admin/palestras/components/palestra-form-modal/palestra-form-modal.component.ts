@@ -1,7 +1,8 @@
-import { Component, input, output, inject, OnInit } from '@angular/core';
+import { Component, input, output, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Lecture, LectureType, TargetAudience } from '../../../../../core/models/lecture.model';
+import { FileUploadService } from '../../../../../core/services/file-upload.service';
 
 @Component({
   selector: 'app-palestra-form-modal',
@@ -17,6 +18,11 @@ export class PalestraFormModalComponent implements OnInit {
 
   #fb = inject(FormBuilder);
   #datePipe = inject(DatePipe);
+  #fileUploadService = inject(FileUploadService);
+
+  imagePreview = signal<string | null>(null);
+  uploadError = signal<string | null>(null);
+  isUploading = signal(false);
 
   form = this.#fb.nonNullable.group({
     id: [0],
@@ -25,9 +31,11 @@ export class PalestraFormModalComponent implements OnInit {
     description: ['', [Validators.required]],
     date: ['', [Validators.required]],
     time: ['', [Validators.required]],
-    type: ['Palestra' as LectureType, [Validators.required]],
-    targetAudience: ['Todos' as TargetAudience, [Validators.required]],
-    speakerImagePath: ['']
+    type: ['PALESTRA' as LectureType, [Validators.required]],
+    targetAudience: ['TODOS' as TargetAudience, [Validators.required]],
+    speakerImagePath: [''],
+    registrationUrl: [''],
+    finished: [false]
   });
 
   ngOnInit() {
@@ -43,15 +51,50 @@ export class PalestraFormModalComponent implements OnInit {
         time: l.time,
         type: l.type,
         targetAudience: l.targetAudience,
-        speakerImagePath: l.speakerImagePath
+        speakerImagePath: l.speakerImagePath,
+        registrationUrl: l.registrationUrl || '',
+        finished: l.finished
       });
+      
+      // Se já tem imagem, mostra preview
+      if (l.speakerImagePath) {
+        this.imagePreview.set(l.speakerImagePath);
+      }
     }
   }
 
-  onFileChange(e: Event) {
+  async onFileChange(e: Event) {
     const input = e.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.form.patchValue({ speakerImagePath: '/assets/images/lectures/uploaded.jpg' });
+    if (!input.files || input.files.length === 0) return;
+
+    const file = input.files[0];
+    this.uploadError.set(null);
+
+    // Valida o arquivo
+    const validation = this.#fileUploadService.validateImage(file);
+    if (!validation.valid) {
+      this.uploadError.set(validation.error || 'Arquivo inválido');
+      return;
+    }
+
+    try {
+      this.isUploading.set(true);
+
+      // Cria preview
+      const preview = await this.#fileUploadService.createImagePreview(file);
+      this.imagePreview.set(preview);
+
+      // Salva localmente e obtém a URL
+      const imagePath = await this.#fileUploadService.saveImageLocally(file);
+      
+      // Atualiza o formulário com o caminho da imagem
+      this.form.patchValue({ speakerImagePath: imagePath });
+      
+    } catch (error) {
+      this.uploadError.set('Erro ao processar a imagem');
+      console.error('Image processing error:', error);
+    } finally {
+      this.isUploading.set(false);
     }
   }
 
@@ -76,7 +119,9 @@ export class PalestraFormModalComponent implements OnInit {
       time: val.time,
       type: val.type as LectureType,
       targetAudience: val.targetAudience as TargetAudience,
-      speakerImagePath: val.speakerImagePath || '/assets/images/lectures/default.jpg'
+      speakerImagePath: val.speakerImagePath || '/assets/images/lectures/default.jpg',
+      registrationUrl: val.registrationUrl || '',
+      finished: val.finished
     };
 
     this.save.emit(payload);

@@ -11,12 +11,12 @@
  * - Palestra: apresentação expositiva para o público geral
  * - Oficina: atividade prática e hands-on
  */
-export type LectureType = 'Palestra' | 'Oficina';
+export type LectureType = 'PALESTRA' | 'OFICINA';
 
 /**
  * Público-alvo da palestra/oficina.
  */
-export type TargetAudience = 'Todos' | 'Devs' | 'Gestores' | 'RH' | 'Negócios';
+export type TargetAudience = 'TODOS' | 'DEVS' | 'GESTORES' | 'RH' | 'NEGOCIOS';
 
 /**
  * Interface principal que representa uma Palestra ou Oficina do evento.
@@ -59,6 +59,9 @@ export interface Lecture {
 
   /** URL de inscrição — opcional, habilitado para uso futuro */
   registrationUrl?: string;
+
+  /** Indica se a palestra já foi finalizada */
+  finished: boolean;
 }
 
 /**

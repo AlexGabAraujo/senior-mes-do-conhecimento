@@ -21,16 +21,16 @@ public class UpdateLectureUseCase {
         Lecture lecture = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Palestra não encontrada"));
 
-        lecture.setTitle(dto.title());
-        lecture.setSpeaker(dto.speaker());
-        lecture.setDescription(dto.description());
-        lecture.setTargetAudience(dto.targetAudience());
-        lecture.setDate(dto.date());
-        lecture.setTime(LocalTime.parse(dto.time()));
-        lecture.setType(dto.type());
-        lecture.setSpeakerImagePath(dto.speakerImagePath());
-        lecture.setRegistrationUrl(dto.registrationUrl());
-        lecture.setFinished(dto.finished());
+        lecture.setTitle(dto.getTitle());
+        lecture.setSpeaker(dto.getSpeaker());
+        lecture.setDescription(dto.getDescription());
+        lecture.setTargetAudience(dto.getTargetAudience());
+        lecture.setDate(dto.getDate());
+        lecture.setTime(LocalTime.parse(dto.getTime()));
+        lecture.setType(dto.getType());
+        lecture.setSpeakerImagePath(dto.getSpeakerImagePath());
+        lecture.setRegistrationUrl(dto.getRegistrationUrl());
+        lecture.setFinished(dto.isFinished());
 
         Lecture saved = repository.save(lecture);
 

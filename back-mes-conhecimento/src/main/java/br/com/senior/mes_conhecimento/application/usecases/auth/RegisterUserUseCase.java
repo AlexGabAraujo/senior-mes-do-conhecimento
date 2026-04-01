@@ -19,15 +19,15 @@ public class RegisterUserUseCase {
     }
 
     public void execute(RegisterRequestDTO dto) {
-        if (userRepository.findByEmail(dto.email()).isPresent()) {
+        if (userRepository.findByEmail(dto.getEmail()).isPresent()) {
             throw new IllegalArgumentException("E-mail já está em uso.");
         }
-        if (userRepository.findByUsername(dto.username()).isPresent()) {
+        if (userRepository.findByUsername(dto.getUsername()).isPresent()) {
             throw new IllegalArgumentException("Username já está em uso.");
         }
 
-        String encodedPassword = passwordEncoder.encode(dto.password());
-        User newUser = new User(null, dto.email(), dto.username(), encodedPassword, UserRole.USER);
+        String encodedPassword = passwordEncoder.encode(dto.getPassword());
+        User newUser = new User(null, dto.getEmail(), dto.getUsername(), encodedPassword, UserRole.USER);
         userRepository.save(newUser);
     }
 }

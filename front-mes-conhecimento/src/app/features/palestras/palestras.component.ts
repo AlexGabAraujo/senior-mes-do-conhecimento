@@ -7,8 +7,8 @@ import { SectionHeaderComponent } from '../../shared/section-header/section-head
 /** Opções de filtro exibidas na barra de filtros */
 const OPCOES_FILTRO: { label: string; value: LectureType | null }[] = [
   { label: 'Todos', value: null },
-  { label: 'Palestras', value: 'Palestra' },
-  { label: 'Oficinas', value: 'Oficina' },
+  { label: 'Palestras', value: 'PALESTRA' },
+  { label: 'Oficinas', value: 'OFICINA' },
 ];
 
 /**

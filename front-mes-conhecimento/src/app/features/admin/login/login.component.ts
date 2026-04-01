@@ -22,7 +22,8 @@ import { AuthService } from '../../../core/services/auth.service';
               id="email"
               type="text"
               formControlName="email"
-              class="h-10 px-3 py-2 bg-[#1E293B]/50 border border-[#334155] rounded-md text-sm text-white focus:outline-none focus:border-[#00B090] focus:ring-1 focus:ring-[#00B090] transition-colors"
+              placeholder="admin@ucs.br"
+              class="h-10 px-3 py-2 bg-[#1E293B]/50 border border-[#334155] rounded-md text-sm text-white focus:outline-none focus:border-[#00B090] focus:ring-1 focus:ring-[#00B090] transition-colors placeholder:text-[#64748B]"
             />
           </div>
 
@@ -32,7 +33,8 @@ import { AuthService } from '../../../core/services/auth.service';
               id="password"
               type="password"
               formControlName="password"
-              class="h-10 px-3 py-2 bg-[#1E293B]/50 border border-[#334155] rounded-md text-sm text-white focus:outline-none focus:border-[#00B090] focus:ring-1 focus:ring-[#00B090] transition-colors"
+              placeholder="Digite sua senha"
+              class="h-10 px-3 py-2 bg-[#1E293B]/50 border border-[#334155] rounded-md text-sm text-white focus:outline-none focus:border-[#00B090] focus:ring-1 focus:ring-[#00B090] transition-colors placeholder:text-[#64748B]"
             />
           </div>
 
@@ -60,8 +62,8 @@ export class LoginComponent {
   #router = inject(Router);
 
   loginForm = this.#fb.nonNullable.group({
-    email: ['admin', [Validators.required]],
-    password: ['admin', [Validators.required]]
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]]
   });
 
   isLoading = signal(false);

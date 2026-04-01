@@ -103,7 +103,7 @@ export class PalestrasAdminComponent {
   #lectureService = inject(LectureService);
 
   // Filters State
-  filterType = signal<'Todas' | 'Palestra' | 'Oficina'>('Todas');
+  filterType = signal<'Todas' | 'PALESTRA' | 'OFICINA'>('Todas');
   filterStatus = signal<'Todas' | 'Ocorridas' | 'Futuras'>('Todas');
 
   // Pagination State

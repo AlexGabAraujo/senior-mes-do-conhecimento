@@ -20,16 +20,16 @@ public class CreateLectureUseCase {
     public LectureResponseDTO execute(LectureRequestDTO dto) {
         Lecture lecture = new Lecture(
                 null,
-                dto.title(),
-                dto.speaker(),
-                dto.description(),
-                dto.targetAudience(),
-                dto.date(),
-                LocalTime.parse(dto.time()),
-                dto.type(),
-                dto.speakerImagePath(),
-                dto.registrationUrl(),
-                dto.finished()
+                dto.getTitle(),
+                dto.getSpeaker(),
+                dto.getDescription(),
+                dto.getTargetAudience(),
+                dto.getDate(),
+                LocalTime.parse(dto.getTime()),
+                dto.getType(),
+                dto.getSpeakerImagePath(),
+                dto.getRegistrationUrl(),
+                dto.isFinished()
         );
 
         Lecture saved = repository.save(lecture);

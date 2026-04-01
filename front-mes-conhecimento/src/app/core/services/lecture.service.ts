@@ -23,8 +23,8 @@ export class LectureService {
   readonly error = computed(() => this.#state().error);
 
   readonly totalLectures = computed(() => this.lectures().length);
-  readonly totalPalestras = computed(() => this.lectures().filter(l => l.type === 'Palestra').length);
-  readonly totalOficinas = computed(() => this.lectures().filter(l => l.type === 'Oficina').length);
+  readonly totalPalestras = computed(() => this.lectures().filter(l => l.type === 'PALESTRA').length);
+  readonly totalOficinas = computed(() => this.lectures().filter(l => l.type === 'OFICINA').length);
 
   constructor() {
     this.carregarDados();
@@ -44,6 +44,7 @@ export class LectureService {
     this.http.post<Lecture>(this.adminUrl, payload).subscribe({
       next: (novaPalestra) => {
         novaPalestra.date = new Date(novaPalestra.date); // Parsing string -> Date
+        novaPalestra.finished = novaPalestra.finished || false; // Garante que finished existe
         this.#state.update((s) => ({
           ...s,
           lectures: [novaPalestra, ...s.lectures]
@@ -59,6 +60,7 @@ export class LectureService {
     this.http.put<Lecture>(`${this.adminUrl}/${palestra.id}`, payload).subscribe({
       next: (atualizada) => {
         atualizada.date = new Date(atualizada.date);
+        atualizada.finished = atualizada.finished || false; // Garante que finished existe
         this.#state.update((s) => ({
           ...s,
           lectures: s.lectures.map((l) => (l.id === atualizada.id ? atualizada : l))
@@ -90,7 +92,8 @@ export class LectureService {
         // Mapeia o Spring { content: [...] } (PageImpl) 
         const items = page.content.map((item: any) => ({
            ...item,
-           date: new Date(item.date) // Converte String SQL pra JS Date obj
+           date: new Date(item.date), // Converte String SQL pra JS Date obj
+           finished: item.finished || false // Garante que finished existe
         }));
 
         this.#state.set({ lectures: items, isLoading: false, error: null });

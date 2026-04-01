@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Uploads - Ignorar imagens mas manter estrutura
+/src/assets/uploads/*
+!/src/assets/uploads/.gitkeep
+!/src/assets/uploads/README.md

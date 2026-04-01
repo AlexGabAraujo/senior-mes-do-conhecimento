@@ -1,7 +1,7 @@
 package br.com.senior.mes_conhecimento.infrastructure.persistence.entities;
 
 import br.com.senior.mes_conhecimento.domain.enums.UserRole;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_users")
