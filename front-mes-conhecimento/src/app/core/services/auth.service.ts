@@ -1,56 +1,71 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { User, UserRole } from '../models/user.model';
-import { Observable, delay, of, throwError } from 'rxjs';
+import { Observable, tap, catchError, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // Estado privado gerenciado via Signal
+  private http = inject(HttpClient);
+  private readonly baseUrl = 'http://localhost:8080/api/auth';
+
+  // State local
   readonly #currentUser = signal<User | null>(null);
 
-  // Estados públicos disponíveis para leitura (read-only)
+  // States derivados
   readonly currentUser = computed(() => this.#currentUser());
   readonly isAuthenticated = computed(() => !!this.#currentUser());
 
   constructor() {
-    // Checa sessão local (persistência básica)
+    this.checkSession();
+  }
+
+  // Analisa o token no localStorage para reidratar o login ao dar f5
+  private checkSession() {
+    const token = localStorage.getItem('__auth_token');
     const storedUser = localStorage.getItem('__user');
-    if (storedUser) {
+    
+    if (token && storedUser) {
       try {
         this.#currentUser.set(JSON.parse(storedUser));
       } catch {
-        localStorage.removeItem('__user');
+        this.logout();
       }
+    } else {
+      this.logout();
     }
   }
 
-  /**
-   * Mock simulando login. Quando conectar com a API, injetar HttpClient.
-   */
-  login(email: string, password: string): Observable<User> {
-    // Permite "admin" ou "admin@senior.com.br" pelos prints
-    if ((email === 'admin' || email === 'admin@senior.com.br') && password === 'admin') {
-      const user: User = {
-        id: 1,
-        email: 'admin@senior.com.br',
-        username: 'Admin',
-        role: UserRole.ADMIN
-      };
+  login(email: string, password: string): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.baseUrl}/login`, { email, password })
+      .pipe(
+        tap((res) => {
+          localStorage.setItem('__auth_token', res.token);
+          
+          // Num cenário real teríamos uma requisição /api/me ou decode de JWT (jwt-decode).
+          // Para este protótipo, vamos instanciar o objeto usuário base para liberar as VIEWS de admin:
+          const user: User = {
+            id: 0,
+            email: email,
+            username: 'Admin Mês Conhecimento',
+            role: UserRole.ADMIN
+          };
 
-      this.#currentUser.set(user);
-      localStorage.setItem('__user', JSON.stringify(user));
-
-      // Simula uma resposta do servidor (0.5s)
-      return of(user).pipe(delay(500));
-    }
-
-    // Usando string direta para simplificar a mensagem de erro da API virtual
-    return throwError(() => new Error('Credenciais inválidas.')).pipe(delay(500));
+          this.#currentUser.set(user);
+          localStorage.setItem('__user', JSON.stringify(user));
+        }),
+        catchError(err => throwError(() => new Error('Credenciais inválidas.')))
+      );
   }
 
   logout(): void {
     this.#currentUser.set(null);
     localStorage.removeItem('__user');
+    localStorage.removeItem('__auth_token');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('__auth_token');
   }
 }
