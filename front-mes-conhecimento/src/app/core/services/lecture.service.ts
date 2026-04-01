@@ -67,6 +67,31 @@ export class LectureService {
     return this.lectures().filter(l => l.type === tipo);
   }
 
+  // ─── CRUD (Mock Local via Signal) ─────────────────────────────────────────
+
+  criar(palestra: Omit<Lecture, 'id'>): void {
+    const nextId = Math.max(0, ...this.lectures().map(l => l.id)) + 1;
+    const novaPalestra: Lecture = { ...palestra, id: nextId };
+    this.#state.update((s) => ({
+      ...s,
+      lectures: [novaPalestra, ...s.lectures]
+    }));
+  }
+
+  atualizar(palestra: Lecture): void {
+    this.#state.update((s) => ({
+      ...s,
+      lectures: s.lectures.map((l) => (l.id === palestra.id ? palestra : l))
+    }));
+  }
+
+  excluir(id: number): void {
+    this.#state.update((s) => ({
+      ...s,
+      lectures: s.lectures.filter((l) => l.id !== id)
+    }));
+  }
+
   // ─── Carregamento de Dados (Mock) ─────────────────────────────────────────
 
   /**
