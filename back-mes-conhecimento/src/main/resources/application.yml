@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: mes-conhecimento
+    
+  # Configuração de Threads Virtuais (Java 21)
+  threads:
+    virtual:
+      enabled: true
+      
+  # Configuração de Banco de Dados PostgreSQL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mes_conhecimento
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+    
+  # Configurações JPA e Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: validate # Flyway gerencia as tabelas
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        
+  # Configurações do Flyway
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    clean-disabled: true
+
+server:
+  port: 8080
