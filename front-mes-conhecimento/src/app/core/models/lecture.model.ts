@@ -41,8 +41,8 @@ export interface Lecture {
   /** Público-alvo da atividade */
   targetAudience: TargetAudience;
 
-  /** Data formatada para exibição (ex: "02 de abril") */
-  date: string;
+  /** Data da atividade (alinhado com LocalDate no back) */
+  date: Date;
 
   /** Horário de início (ex: "10:00") */
   time: string;

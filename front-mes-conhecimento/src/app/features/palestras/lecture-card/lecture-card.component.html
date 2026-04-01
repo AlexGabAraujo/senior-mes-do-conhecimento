@@ -30,7 +30,7 @@
     <!-- Título da Palestra -->
     <h3
       class="font-bold leading-snug text-white"
-      style="font-size: 1.05rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"
+      style="font-size: 1.05rem; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"
     >
       {{ lecture().title }}
     </h3>
@@ -49,7 +49,7 @@
     <!-- Descrição (limitada a 3 linhas) -->
     <p
       class="text-sm leading-relaxed flex-1"
-      style="color: #94a3b8; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;"
+      style="color: #94a3b8; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;"
     >
       {{ lecture().description }}
     </p>
@@ -71,7 +71,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
         </svg>
-        <span class="text-xs" style="color: #64748b;">{{ lecture().date }}</span>
+        <span class="text-xs" style="color: #64748b;">{{ lecture().date | date:'dd/MM/yyyy' }}</span>
       </div>
 
       <!-- Horário -->

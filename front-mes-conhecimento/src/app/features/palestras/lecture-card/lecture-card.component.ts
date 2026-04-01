@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Lecture } from '../../../core/models/lecture.model';
 import { BadgeComponent } from '../../../shared/badge/badge.component';
 
@@ -17,7 +18,7 @@ import { BadgeComponent } from '../../../shared/badge/badge.component';
 @Component({
   selector: 'app-lecture-card',
   standalone: true,
-  imports: [BadgeComponent],
+  imports: [BadgeComponent, DatePipe],
   templateUrl: './lecture-card.component.html',
 })
 export class LectureCardComponent {

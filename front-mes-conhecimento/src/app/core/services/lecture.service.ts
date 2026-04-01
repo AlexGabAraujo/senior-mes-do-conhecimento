@@ -92,7 +92,7 @@ export class LectureService {
         description:
           'Não estamos vivendo uma era de mudanças, mas uma mudança de era. A Inteligência Artificial não é apenas uma evolução tecnológica; é uma revolução que exige um novo tipo de talento: o Profissional da IA.',
         targetAudience: 'Todos',
-        date: '02 de abril',
+        date: new Date(2026, 3, 2),
         time: '10:00',
         type: 'Palestra',
         speakerImagePath: '/assets/images/lectures/leonardo-loureiro.jpg',
@@ -105,7 +105,7 @@ export class LectureService {
         description:
           'Nesta sessão, você vai conhecer o Kiro, a IDE com IA da AWS que está transformando a forma como desenvolvedores escrevem, revisam e entregam código.',
         targetAudience: 'Devs',
-        date: '07 de abril',
+        date: new Date(2026, 3, 7),
         time: '10:00',
         type: 'Oficina',
         speakerImagePath: '/assets/images/lectures/cesar-kuehl.jpg',
@@ -118,7 +118,7 @@ export class LectureService {
         description:
           'A Inteligência Artificial está redefinindo as fronteiras do que consideramos "criação". Em um mundo onde algoritmos podem gerar resultados em segundos, onde fica o valor da nossa originalidade?',
         targetAudience: 'Todos',
-        date: '07 de abril',
+        date: new Date(2026, 3, 7),
         time: '16:00',
         type: 'Palestra',
         speakerImagePath: '/assets/images/lectures/taiolor-morais.jpg',
@@ -131,7 +131,7 @@ export class LectureService {
         description:
           'Aprenda a usar o Microsoft Copilot Chat como um assistente estratégico no seu dia a dia corporativo, potencializando reuniões, análises e tomadas de decisão com IA.',
         targetAudience: 'Todos',
-        date: '09 de abril',
+        date: new Date(2026, 3, 9),
         time: '10:00',
         type: 'Oficina',
         speakerImagePath: '/assets/images/lectures/eduardo-estanislau.jpg',
@@ -144,7 +144,7 @@ export class LectureService {
         description:
           'Descubra como transformar ideias em produtos funcionais utilizando ferramentas de IA generativa. Uma jornada prática do conceito ao MVP com apoio de IA.',
         targetAudience: 'Devs',
-        date: '09 de abril',
+        date: new Date(2026, 3, 9),
         time: '14:00',
         type: 'Oficina',
         speakerImagePath: '/assets/images/lectures/matheus-fratz.jpg',
@@ -157,7 +157,7 @@ export class LectureService {
         description:
           'Como estruturar equipes de alto desempenho que utilizam IA como membro ativo do squad? Explore o conceito de squads cognitivos e o futuro do trabalho colaborativo com IA.',
         targetAudience: 'Gestores',
-        date: '14 de abril',
+        date: new Date(2026, 3, 14),
         time: '10:00',
         type: 'Palestra',
         speakerImagePath: '/assets/images/lectures/leandro-everton.jpg',
@@ -170,7 +170,7 @@ export class LectureService {
         description:
           'Conheça o Sara Studio e aprenda a criar conteúdos de treinamento, apresentações e materiais corporativos com auxílio de IA generativa de forma rápida e profissional.',
         targetAudience: 'Todos',
-        date: '14 de abril',
+        date: new Date(2026, 3, 14),
         time: '14:00',
         type: 'Oficina',
         speakerImagePath: '/assets/images/lectures/tharlys-dias.jpg',
@@ -183,7 +183,7 @@ export class LectureService {
         description:
           'Automatize fluxos de trabalho complexos com agentes de IA e n8n. Aprenda a criar automações inteligentes que conectam sistemas, tomam decisões e executam tarefas de forma autônoma.',
         targetAudience: 'Devs',
-        date: '16 de abril',
+        date: new Date(2026, 3, 16),
         time: '10:00',
         type: 'Oficina',
         speakerImagePath: '/assets/images/lectures/michel-nienow.jpg',
@@ -196,7 +196,7 @@ export class LectureService {
         description:
           'Uma imersão completa no ecossistema Microsoft 365 Copilot. Teams, Word, Excel, PowerPoint e Outlook potencializados por IA para transformar sua produtividade diária.',
         targetAudience: 'Todos',
-        date: '16 de abril',
+        date: new Date(2026, 3, 16),
         time: '14:00',
         type: 'Oficina',
         speakerImagePath: '/assets/images/lectures/eduardo-estanislau-2.jpg',
@@ -209,7 +209,7 @@ export class LectureService {
         description:
           'Uma análise profunda sobre o futuro da Inteligência Artificial para além das tendências atuais: AGI, IA corporativa de nova geração e como as organizações devem se preparar.',
         targetAudience: 'Todos',
-        date: '23 de abril',
+        date: new Date(2026, 3, 23),
         time: '10:00',
         type: 'Palestra',
         speakerImagePath: '/assets/images/lectures/jose-luckmann.jpg',
