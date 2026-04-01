@@ -8,7 +8,7 @@ public class LectureSpecification {
 
     public static Specification<LectureEntity> withFilters(LectureType type, Boolean finished) {
         return (root, query, criteriaBuilder) -> {
-            Specification<LectureEntity> spec = Specification.where(null);
+            Specification<LectureEntity> spec = Specification.where((Specification<LectureEntity>) null);
 
             if (type != null) {
                 spec = spec.and((r, q, cb) -> cb.equal(r.get("type"), type));
