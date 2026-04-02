@@ -1,7 +1,7 @@
 package br.com.senior.mes_conhecimento.application.dtos;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 public class LoginRequestDTO {
     @NotBlank

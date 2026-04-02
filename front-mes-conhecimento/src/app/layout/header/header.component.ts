@@ -66,6 +66,20 @@ import { AuthService } from '../../core/services/auth.service';
             Sobre
           </a>
 
+          <!-- Aba Discussões: visível apenas para usuários autenticados -->
+          @if (isAuthenticated()) {
+            <a
+              routerLink="/discussoes"
+              class="nav-link"
+              style="color: #94a3b8; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: color 0.3s ease; letter-spacing: 0.02em;"
+              (mouseenter)="onNavHover($event, true)"
+              (mouseleave)="onNavHover($event, false)"
+              aria-label="Acessar discussões"
+            >
+              Discussões
+            </a>
+          }
+
           <!-- Botões de Login e Cadastro / Usuário Logado -->
           @if (!isAuthenticated()) {
             <a
@@ -162,6 +176,17 @@ import { AuthService } from '../../core/services/auth.service';
             >
               Sobre
             </a>
+
+            <!-- Discussões no menu mobile: apenas para autenticados -->
+            @if (isAuthenticated()) {
+              <a
+                routerLink="/discussoes"
+                style="color: #94a3b8; font-size: 1rem; font-weight: 500; text-decoration: none; padding: 0.5rem 0;"
+                (click)="toggleMobileMenu()"
+              >
+                Discussões
+              </a>
+            }
             
             @if (!isAuthenticated()) {
               <a

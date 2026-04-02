@@ -30,6 +30,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public Optional<User> findById(Long id) {
+        return jpaRepository.findById(id).map(mapper::toDomain);
+    }
+
+    @Override
     public User save(User user) {
         UserEntity entity = mapper.toEntity(user);
         UserEntity savedEntity = jpaRepository.save(entity);

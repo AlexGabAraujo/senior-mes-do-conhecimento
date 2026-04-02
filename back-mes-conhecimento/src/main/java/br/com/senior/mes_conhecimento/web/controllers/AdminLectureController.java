@@ -5,7 +5,7 @@ import br.com.senior.mes_conhecimento.application.dtos.LectureResponseDTO;
 import br.com.senior.mes_conhecimento.application.usecases.lecture.CreateLectureUseCase;
 import br.com.senior.mes_conhecimento.application.usecases.lecture.DeleteLectureUseCase;
 import br.com.senior.mes_conhecimento.application.usecases.lecture.UpdateLectureUseCase;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

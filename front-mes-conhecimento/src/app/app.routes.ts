@@ -35,6 +35,10 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'discussoes',
+    loadChildren: () => import('./features/discussoes/discussoes.routes').then(m => m.discussoesRoutes)
+  },
+  {
     path: '**',
     redirectTo: '' // Redireciona qualquer rota inválida para a raiz
   }

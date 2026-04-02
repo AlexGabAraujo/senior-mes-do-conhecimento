@@ -2,8 +2,8 @@ package br.com.senior.mes_conhecimento.application.dtos;
 
 import br.com.senior.mes_conhecimento.domain.enums.LectureType;
 import br.com.senior.mes_conhecimento.domain.enums.TargetAudience;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class LectureRequestDTO {

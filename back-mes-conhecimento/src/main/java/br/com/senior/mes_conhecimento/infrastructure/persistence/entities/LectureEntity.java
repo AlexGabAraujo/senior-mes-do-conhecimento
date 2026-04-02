@@ -2,7 +2,7 @@ package br.com.senior.mes_conhecimento.infrastructure.persistence.entities;
 
 import br.com.senior.mes_conhecimento.domain.enums.LectureType;
 import br.com.senior.mes_conhecimento.domain.enums.TargetAudience;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
